@@ -1,0 +1,28 @@
+<?php
+	$this->title = "Add new album";
+	$this->headTitle($this->title);
+	echo $this->form ;
+?>
+
+<script>
+	$(document).ready(
+        function(){
+            $("#submitbutton").click(function(event) {
+              //event.preventDefault();
+              var artist = $('#artist').val();
+              var title = $('#title').val();
+              var status = 1;
+              $.ajax({
+                url: "<?php echo $this->baseUrl("index/ajax")?>",
+                data: {artist:artist, title:title,status:status},
+                success: function(data){
+                    var aryData = $.parseJSON(data);
+                    $('#show-msg').text(aryData.message)
+                },
+                error: function(){
+                }
+              });
+             });
+        }
+        );
+</script>

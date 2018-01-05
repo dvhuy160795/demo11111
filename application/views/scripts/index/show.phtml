@@ -1,0 +1,54 @@
+
+<!-- <table>
+	
+	<button type="button" class="close" data-dismiss="modal">×</button>
+	<tr>
+		<th>Title</th>
+		<th>Artist</th>
+		<th>Action</th>
+	</tr>
+	<tr>
+		<td><input type="text" value="<?php echo $this->albums['title'];?>" id ="title"></td>
+		<td><input type="text" value="<?php echo $this->albums['artist'];?>" id ="artist"></td>
+		<td><button id="<?php echo $this->albums['id'];?>" class ="update_album btn btn-success">Update</button></td>
+	</tr>
+</table> -->
+
+<table>
+	<caption class="edit_data">Edit Album</caption>
+	<tbody>
+		<tr>
+			<td>Title</td>
+			<td><input type="text" value="<?php echo $this->albums['title'];?>" id ="title"></td>
+		</tr>
+		<tr>
+			<td>Artist</td>
+			<td><input type="text" value="<?php echo $this->albums['artist'];?>" id ="artist"></td>
+		</tr>
+		<tr>
+			<td>Action</td>
+			<td><button id="<?php echo $this->albums['id'];?>" class ="update_album btn btn-success">Update</button></td>
+			<button type="button" class="close" data-dismiss="modal">×</button>
+		</tr>
+	</tbody>
+</table>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ <script>
+	 $('.update_album').click(function(event) {
+			var id =  $(this).attr('id');
+			var title = $('#title').val();
+			var artist = $('#artist').val();
+			$.ajax({
+				type:'POST', 
+				data:{id:id, title:title, artist:artist},
+				url: "<?php echo $this->baseUrl("index/savedata")?>", 
+				success: function(result){
+					$("#show-msg").html(result);
+					location.reload();
+				}
+			});
+			 $('.modal-backdrop').hide(); // for black background
+             $('body').removeClass('modal-open');
+			 $("#myModal1").hide();
+		});
+ </script>

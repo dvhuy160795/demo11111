@@ -1,0 +1,144 @@
+#content{width:800px;margin: 30px auto ;height: 400px;}
+table {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px!important;
+}
+tr:nth-child(even){background-color: #f2f2f2}
+tr:hover {background-color: #ddd;}
+th{padding-top: 12px;padding-bottom: 12px;text-align: left;background-color: #4CAF50;color: white;}
+a{text-decoration: none;}
+.required{padding-left: 15px;font-size: 20px;}
+input[type=submit]{
+	width: 96%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-left: 16px;
+}
+.modal-content{width: 802px;}
+input[type=text] {
+    width: 96%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-left: 16px;
+}
+input[type=password] {
+    width: 96%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-left: 16px;
+}
+dt#artist-label {
+    margin-left: 0px;
+}
+dt#title-label{
+	margin-left: 0px;
+}
+.modal-footer {
+    position: relative;
+    left: 20px;
+    width: 758px;
+    top: -67px;
+}
+.btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+    position: relative;
+    right: -17px;
+}
+h1 {
+    font-size: 36px;
+    position: relative;
+    left: 312px;}
+button.close {
+    position: relative;
+    right: 10px;
+    top: 5px;
+}
+.edit_data{
+    font-weight: bold;
+    color: #111111;
+    font-size: 34px;
+    text-align: center;
+}
+.btn-success {
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+    margin-left: 16px;
+}
+dt#password-label {
+    padding-left: 43px;
+}
+dt#username-label {
+    padding-left: 43px;
+}
+form#login {
+    
+}
+p.alert_login {
+    color: red;
+    padding-left: 57px;
+}
+ul.errors {
+    color: red;
+}
+.dangky{
+    width: 91%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-left: 56px;
+    text-align: center;
+    background: #ccc;
+}
+dt#firstname-label {
+    margin-left: 55px;
+}
+dt#lastname-label{
+    margin-left: 55px;
+}
+dt#email-label{
+    margin-left: 55px;
+}
+dt#confirmPassword-label{
+    margin-left: 43px;
+}
+input[type=submit]:hover{
+    background: #eeeeee;
+}
+.dangky:hover{
+    background: #eeeeee
+}
+.dangky a{
+    color: black;
+    font-size: 14px
+}
+p.dangky_canhbao {
+    color: red;
+    padding-left: 57px;
+}
+.check_login {
+    float: right;
+    margin-right: 15px;
+}

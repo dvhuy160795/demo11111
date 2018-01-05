@@ -1,0 +1,154 @@
+<?php
+$this->title = "List Albums";
+$this->headTitle($this->title);
+?>
+<?php echo "<p style='float:right'>Welcome : "." <b>$this->username</b></p>" ?>
+<div style="margin-top: 20px;float: right;right: -111px;position: relative;"><a href="<?=$this->url(array('controller'=>'index','action'=>'dangxuat'))?>">Logout</a></div>
+<p><a href="<?php echo $this->url(array('controller'=>'index',
+'action'=>'add'));?>"  class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add new album</a></p>
+<table>
+  <tr>
+   <th>Title</th>
+   <th>Artist</th>
+   <th>Action</th>
+  </tr>
+  <?php foreach($this->albums as $album) : ?>
+  <tr>
+    <td><?php echo $this->escape($album->title);?></td>
+    <td><?php echo $this->escape($album->artist);?></td>
+    <td style="width: 19%"> 
+      <a data-id="<?php echo $album->id;?>" class="btn btn-info btn-sm edit_db" data-toggle="modal" data-target="#myModal1"> <span class="glyphicon glyphicon-pencil"></span> Edit </a>
+      <!-- <a href="<?php echo $this->url(array('controller'=>'index',
+      'action'=>'delete', 'id'=>$album->id));?>" onclick="return confirm('Are you sure?')">Delete</a> --> 
+      <!-- <a href="<?php echo $this->baseUrl("index/show/id/".$album->id)?>">Show</a> -->
+      <a id="<?php echo $album->id; ?>" class="btn btn-info btn-sm delete_class" style="background: red;border-color: red"> <span class="glyphicon glyphicon-trash"></span> Delete </a>
+      <div class="xoatam"></div>
+    </td>
+  </tr>
+      <?php endforeach; ?>
+</table>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <div class="container">
+      <!-- Trigger the modal with a button -->
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">     
+          </div> 
+          <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>   
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="container">
+      <!-- Trigger the modal with a button -->
+      <!-- Modal -->
+      <div class="modal fade" id="myModal1" role="dialog">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">     
+          </div> 
+        </div>
+      </div>
+    </div>
+
+    <div id="show-msg"></div>
+
+    <div style="margin-top: 10px;float: right;">
+
+      <?php if($this->hasFirst) : ?>
+      <a href="<?php echo $this->url(array('controller'=>'index','action'=>'index','p'=>$this->firstPage)) ?>"> << </a>
+      <?php else : ?>
+        <span></span>
+      <?php endif; ?>  
+
+      <?php if ($this->hasPrev) : ?>
+        <!-- <a href="">First</a> -->
+        <a href="<?php echo $this->url(array('controller'=>'index','action'=>'index','p'=>$this->previousPage)) ?>"> < </a>
+      <?php else : ?>
+        <span style="display: none">previous</span>
+      <?php endif; ?>   
+      <?php echo "".$this->currentPage."/".$this->countPages; ?>
+      <?php if ($this->hasNext) : ?>
+        <a href="<?php echo $this->url(array('controller'=>'index','action'=>'index','p'=>$this->nextPage)) ?>"> > </a>  
+      <?php else : ?>
+        <span style="display: none">next</span>
+      <?php endif; ?>
+
+      <?php if($this->hasEnd) : ?>
+      <a href="<?php echo $this->url(array('controller'=>'index','action'=>'index','p'=>$this->endPage)) ?>"> >> </a>
+      <?php else : ?>
+        <span></span>
+      <?php endif; ?> 
+
+    </div>
+    <!-- // login logout -->
+    
+    <script>
+     $(document).ready(function(){
+      var ControlerAlbum = {
+        edit : function (id) {
+          var URL = "<?php echo $this->baseUrl("index/editabc");?>";
+          var data = {id:id};
+          $.ajax({
+            url:Url,
+            data: data,
+            success: function(data){
+              console.log(data);
+            },
+            error: function(){
+              alert("err");
+            }
+          });
+        },
+      };
+      $(".delete_class").click(
+    function(){
+      var del_id = $(this).attr('id');
+      var status = 0
+      var x = confirm("Are you sure you want to delete?");
+      if (x) {
+        $.ajax({
+          type:'POST', 
+          data:{id:del_id, status:status},
+          url: "<?php echo $this->baseUrl("index/remove")?>", 
+          success: function(result){
+            console.log(result);
+            $(".xoatam").html(result);
+            location.reload();
+          }
+        });     
+      }else{
+        return false;
+      }
+
+    });
+      $('.edit_db').click(function(event) {
+        var edit_id = $(this).data('id');
+        $.ajax({
+          url: "<?php echo $this->baseUrl("index/show")?>",
+          data: {edit_id:edit_id},
+          dataType: 'json',
+          type: 'POST',
+          success: function(data){
+            $("#myModal1 .modal-content").html(data.html);
+            //$('#show-msg').text(aryData.message)
+          },
+          error: function(){
+          }
+        });
+      });
+    });
+  </script>
+
+
+  
+
